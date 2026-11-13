@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><title>To-do list</title></head><body><h1>To-do list</h1>
+<form id="f"><input id="t" placeholder="New todo" aria-label="New todo"> <button class="primary">Add</button></form><ul id="l"></ul>
+<script>const items=JSON.parse(sessionStorage.getItem('todos')||'[]');const l=document.getElementById('l');
+const draw=()=>{l.innerHTML='';items.forEach((x,i)=>{const li=document.createElement('li');li.textContent=x+' ';const b=document.createElement('button');b.textContent='Remove '+x;b.onclick=()=>{items.splice(i,1);save()};li.appendChild(b);l.appendChild(li)})};
+const save=()=>{sessionStorage.setItem('todos',JSON.stringify(items));draw()};
+document.getElementById('f').onsubmit=(e)=>{e.preventDefault();const v=document.getElementById('t').value.trim();if(v){items.push(v);document.getElementById('t').value='';save()}};draw();</script></body></html>

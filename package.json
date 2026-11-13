@@ -1,0 +1,79 @@
+{
+  "name": "task-pilot",
+  "productName": "TaskPilot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A desktop AI agent that uses its own browser to do tasks for you, and asks before anything risky.",
+  "license": "MIT",
+  "author": "Jateen Yadav",
+  "main": "electron/main.mjs",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n web,app \"vite\" \"wait-on tcp:5180 && cross-env ELECTRON_RUN_AS_NODE= TP_DEV_URL=http://localhost:5180 electron .\"",
+    "build": "tsc --noEmit && vite build",
+    "start": "cross-env ELECTRON_RUN_AS_NODE= electron .",
+    "test": "node --test test/*.test.mjs",
+    "test:e2e": "npm run build && playwright test",
+    "bench": "npm run build && cross-env ELECTRON_RUN_AS_NODE= electron . --bench",
+    "dist": "npm run build && electron-builder"
+  },
+  "build": {
+    "appId": "dev.jateen.taskpilot",
+    "productName": "TaskPilot",
+    "files": [
+      "electron/**",
+      "dist/**",
+      "bench/**",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    },
+    "publish": null,
+    "directories": {
+      "output": "release"
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "concurrently": "^10.0.7",
+    "cross-env": "^10.1.0",
+    "electron": "^45.3.1",
+    "electron-builder": "^26.18.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "wait-on": "^9.5.1"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
+}

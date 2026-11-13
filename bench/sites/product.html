@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><title>Product page</title></head><body><h1>Kulhad Cups, set of 6</h1><div class="tabs" role="tablist"><button role="tab" aria-selected="true" id="t1">Description</button> <button role="tab" aria-selected="false" id="t2">Reviews</button></div>
+<div id="p1" class="card">Handmade clay cups that make chai taste better.</div><div id="p2" class="card" hidden></div>
+<script>const R=[5,4,5,5,3,5,5,2,5,4,5];document.getElementById('p2').innerHTML=R.map((s,i)=>'<p>'+'★'.repeat(s)+'☆'.repeat(5-s)+' — Review '+(i+1)+' ('+s+' stars)</p>').join('');
+const sel=(a)=>{document.getElementById('t1').setAttribute('aria-selected',a===1);document.getElementById('t2').setAttribute('aria-selected',a===2);document.getElementById('p1').hidden=a!==1;document.getElementById('p2').hidden=a!==2};
+document.getElementById('t1').onclick=()=>sel(1);document.getElementById('t2').onclick=()=>sel(2);</script></body></html>

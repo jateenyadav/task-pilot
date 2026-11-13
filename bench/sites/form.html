@@ -1,0 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><title>Feedback form</title></head><body><h1>Tell us about your visit</h1>
+<form id="f"><p><label>Your name <input name="name"></label></p><p><label>Rating <select name="rating"><option value="">Choose…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label></p>
+<p><label>Comment<br><textarea name="comment" rows="3" cols="40"></textarea></label></p><button class="primary" type="submit">Submit feedback</button></form><p id="m"></p>
+<script>document.getElementById('f').onsubmit=(e)=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));sessionStorage.setItem('feedback',JSON.stringify(d));document.getElementById('m').innerHTML='<span class=ok>Thanks, '+d.name+'!</span>'};</script></body></html>

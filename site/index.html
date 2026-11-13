@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TaskPilot · a browser agent that asks first</title>
+  <meta name="description" content="Desktop app: type a task and an AI uses its own browser to do it, step by step. It asks before it submits, pays, sends or signs in. Free, open source.">
+  <meta property="og:title" content="TaskPilot">
+  <meta property="og:description" content="A browser agent that asks before anything risky. Free and open source.">
+  <meta property="og:image" content="https://task-pilot-jateen.netlify.app/screenshot.jpg">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    :root { --bg: #0b1220; --surface: #111a2e; --ink: #e2e8f0; --muted: #94a3b8; --accent: #22d3ee; --accent-ink: #052e36; --line: #1e293b; }
+    @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg: #f8fafc; --surface: #fff; --ink: #0f172a; --muted: #475569; --accent: #0891b2; --accent-ink: #fff; --line: #e2e8f0; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+    .logo { display: flex; gap: 10px; align-items: center; font-weight: 800; font-size: 20px; color: var(--ink); text-decoration: none; }
+    .logo img { width: 32px; height: 32px; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 15px; }
+    nav a:hover { color: var(--ink); }
+    .hero { padding: 48px 0 32px; display: grid; gap: 32px; }
+    h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.08; letter-spacing: -0.02em; margin: 0; max-width: 15ch; }
+    .lede { color: var(--muted); font-size: 19px; max-width: 58ch; margin: 18px 0 0; }
+    .fact { display: inline-block; margin-top: 18px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+    .btn:hover { transform: translateY(-2px); } .btn:active { transform: translateY(0); }
+    .btn.primary { background: var(--accent); color: var(--accent-ink); }
+    .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+    .shot { border-radius: 16px; border: 1px solid var(--line); overflow: hidden; box-shadow: 0 30px 80px -30px rgba(0,0,0,.5); }
+    .shot img { display: block; width: 100%; height: auto; transition: transform .4s; } .shot:hover img { transform: scale(1.02); }
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 30px; margin: 0 0 24px; letter-spacing: -0.01em; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+    .card h3 { margin: 0 0 6px; font-size: 18px; } .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    ol.steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: 12px; }
+    ol.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 14px 56px; position: relative; }
+    ol.steps li::before { content: counter(s); position: absolute; left: 16px; top: 14px; width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-weight: 800; }
+    code { font: 14px "JetBrains Mono", ui-monospace, Menlo, monospace; background: var(--surface); border: 1px solid var(--line); padding: 2px 6px; border-radius: 6px; }
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+    footer a { color: var(--muted); }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="#"><img src="favicon.svg" alt="">TaskPilot</a>
+      <nav><a href="#safety">Safety</a><a href="#how">How it works</a><a href="https://github.com/jateenyadav/task-pilot">GitHub</a></nav>
+    </header>
+    <div class="hero">
+      <div>
+        <h1>A browser agent that asks before anything risky</h1>
+        <p class="lede">Type a task. TaskPilot opens its own browser, looks at the page, and clicks, types and scrolls until it’s done, showing every step as it goes. Before it submits, pays, sends or signs in, it stops and asks you.</p>
+        <span class="fact">Free and open source · uses your own free Gemini key · Mac, Windows, Linux</span>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/jateenyadav/task-pilot/releases/latest">Download TaskPilot</a>
+          <a class="btn ghost" href="https://github.com/jateenyadav/task-pilot">Read the code</a>
+        </div>
+      </div>
+      <div class="shot"><img src="screenshot.jpg" width="1600" height="893" alt="TaskPilot replaying a run: the page with numbered boxes on every clickable element, and the step it took."></div>
+    </div>
+
+    <section id="safety">
+      <h2>Safety is written in code, not left to the AI</h2>
+      <div class="grid">
+        <div class="card"><h3>Asks first</h3><p>Any click that looks like submit, pay, buy, send, sign in or delete waits for your “Yes”. Pressing Enter inside a form asks too.</p></div>
+        <div class="card"><h3>Never types secrets</h3><p>Passwords, OTPs, card, Aadhaar and PAN numbers are refused outright. You type those yourself.</p></div>
+        <div class="card"><h3>Keeps away from risky sites</h3><p>Job portals, banks, payment and email sites are blocked by default. LinkedIn is always blocked.</p></div>
+        <div class="card"><h3>Its own browser</h3><p>A separate session with no access to your real logins. No downloads, pop-ups, camera or microphone.</p></div>
+        <div class="card"><h3>Stop any time</h3><p>A Stop button, the Esc key, a 25-step limit, and it stops by itself if it keeps repeating the same action.</p></div>
+        <div class="card"><h3>Page text is data</h3><p>Instructions hidden on a web page are ignored. Only your task counts.</p></div>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li>It reads the page through the Chrome DevTools Protocol and draws a numbered box on every element you can click or type into.</li>
+        <li>It sends the screenshot and the list of elements to Gemini, which picks one action: click 7, type “kettle” into 3, scroll, and so on.</li>
+        <li>The safety rules check the action. Risky ones wait for you, refused ones are explained, and then it acts and looks again.</li>
+        <li>Every run is saved, so you can replay it step by step or export it as a video.</li>
+      </ol>
+      <p>Benchmark: 10 tasks on bundled practice sites (search, forms, tabs, pagination, long pages), each with an automatic check. Run it yourself with <code>npm run bench</code>.</p>
+    </section>
+
+    <section>
+      <h2>Get started in two minutes</h2>
+      <ol class="steps">
+        <li>Download the app for your computer from the <a href="https://github.com/jateenyadav/task-pilot/releases/latest">latest release</a>. It isn’t signed yet: on a Mac, right-click → Open the first time.</li>
+        <li>Get a free Gemini API key at aistudio.google.com and paste it in Settings. It’s stored encrypted on your computer.</li>
+        <li>Try a task on the built-in practice sites, then on any public website.</li>
+      </ol>
+    </section>
+  </div>
+  <footer><div class="wrap">Built by <a href="https://github.com/jateenyadav">Jateen Yadav</a> · MIT licence · Inspired by simular-ai/Agent-S (independent implementation)</div></footer>
+</body>
+</html>

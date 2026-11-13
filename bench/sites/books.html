@@ -1,0 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><title>Book list</title></head><body><h1>Books</h1><div id="b"></div><p id="nav"></p>
+<script>const B=[['Malgudi Days',250],['Train to Pakistan',299],['The God of Small Things',350],['A Suitable Boy',699],['Midnight\'s Children',499],['The Guide',220],['Wings of Fire',275],['Gitanjali',199],['The White Tiger',399],['Five Point Someone',175],['The Palace of Illusions',425],['Sea of Poppies',450]];
+const page=Number(new URLSearchParams(location.search).get('page')||1);B.slice((page-1)*4,page*4).forEach(b=>{document.getElementById('b').innerHTML+='<div class=card><b>'+b[0]+'</b> — ₹'+b[1]+'</div>'});
+document.getElementById('nav').innerHTML='Page '+page+' of 3 '+(page>1?'<a href="?page='+(page-1)+'">Previous page</a> ':'')+(page<3?'<a href="?page='+(page+1)+'">Next page</a>':'');</script></body></html>
